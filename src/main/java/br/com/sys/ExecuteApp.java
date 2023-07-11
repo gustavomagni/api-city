@@ -1,4 +1,4 @@
-package br.com.service;
+package br.com.sys;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

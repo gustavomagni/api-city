@@ -1,0 +1,138 @@
+swagger: '2.0'
+info:
+  description: Api Documentation
+  version: '1.0'
+  title: Api Documentation
+  termsOfService: urn:tos
+  contact: {}
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0
+host: localhost:8080
+basePath: /
+tags:
+  - name: city-rest
+    description: City Rest
+paths:
+  /city:
+    get:
+      tags:
+        - city-rest
+      summary: getAllCities
+      operationId: getAllCitiesUsingGET
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/City'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+    post:
+      tags:
+        - city-rest
+      summary: save
+      operationId: saveUsingPOST
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: city
+          description: city
+          required: true
+          schema:
+            $ref: '#/definitions/City'
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: string
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+    delete:
+      tags:
+        - city-rest
+      summary: delete
+      operationId: deleteUsingDELETE
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: city
+          description: city
+          required: true
+          schema:
+            $ref: '#/definitions/City'
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: string
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      deprecated: false
+  /city/{city}:
+    get:
+      tags:
+        - city-rest
+      summary: getByCity
+      operationId: getByCityUsingGET
+      produces:
+        - application/json
+      parameters:
+        - name: city
+          in: path
+          description: city
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/City'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+definitions:
+  City:
+    type: object
+    properties:
+      city:
+        type: string
+      createdDate:
+        type: string
+        format: date-time
+      id:
+        type: integer
+        format: int32
+      population:
+        type: number
+        format: double
+      state:
+        type: string
+    title: City
